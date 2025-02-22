@@ -1,0 +1,38 @@
+{
+	"folders": [
+		{
+			"path": "../Voting - Copy/hardhat-boilerplate/Voting"
+		},
+		{
+			"path": "../Voting - Copy/hardhat-boilerplate/artifacts"
+		},
+		{
+			"path": "../Voting - Copy/hardhat-boilerplate/artifacts/build-info"
+		},
+		{
+			"path": "../Voting - Copy/hardhat-boilerplate/artifacts/contracts"
+		},
+		{
+			"path": "../Voting - Copy/hardhat-boilerplate/cache"
+		},
+		{
+			"path": "../Voting - Copy/hardhat-boilerplate/contracts"
+		},
+		{
+			"path": "../Voting - Copy/hardhat-boilerplate/frontend"
+		},
+		{
+			"path": "../Voting - Copy/hardhat-boilerplate/node_modules"
+		},
+		{
+			"path": "../Voting - Copy/hardhat-boilerplate/scripts"
+		},
+		{
+			"path": "../Voting - Copy/hardhat-boilerplate/tasks"
+		},
+		{
+			"path": "../Voting - Copy/hardhat-boilerplate/test"
+		}
+	],
+	"settings": {}
+}
