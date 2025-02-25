@@ -1,8 +1,8 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\Wayne\\Desktop\\Voting\\hardhat-boilerplate\\contracts\\Voting.sol": {
-      "lastModificationDate": 1740204387702,
+    "C:\\Users\\Sebastian\\Desktop\\Voting\\contracts\\Voting.sol": {
+      "lastModificationDate": 1740210114326,
       "contentHash": "995633ece620a57a57aaed3b121dae38",
       "sourceName": "contracts/Voting.sol",
       "solcConfig": {
