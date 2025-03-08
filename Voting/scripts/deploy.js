@@ -15,14 +15,6 @@ async function main() {
 
     console.log("MyContract deployed to:", voting); // <--- This line is crucial!
 
-    // console.log("Voting contract deployed to:", voting.address);
-
-    // const Voting = await ethers.getContractFactory("Voting");
-    // const deployedContract = await ethers.deployContract("Voting", ["Party A", "Party B", "Party C"]);
-    // console.log("Voting contract deployed to:", deployedContract.address);
-    // const partyNames = ["Party A", "Party B", "Party C"]; // List your parties here
-    // const voting = await Voting.deploy(partyNames);
-    // console.log("Voting contract deployed to:", deployedContract.address);
 }
 
 main()
