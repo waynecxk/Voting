@@ -1,0 +1,8 @@
+.exit
+.help
+    const value = await contract.someFunction    console.log(value);
+    //Now you can interact with the contract.
+dress);
+    const Contract = await ethers.getContractFactory("YourContr    const contract = await Contract.attach(contractAd
+const contractAddress = "YOUR_CONTRACT_ADDRESS"; // Replace with your contract address
+npx hardhat run ./scripts/deploy.js --network localhost
