@@ -128,7 +128,7 @@ const contractABI = [
   }
 ];
 
-const contractAddress = '0xA3b47744a700330F03A930450A688357159E28D0'; // Replace with your contract's deployed address
+const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; // Replace with your contract's deployed address
 
 function App () {
   const ethers = require("ethers")
@@ -250,6 +250,7 @@ function App () {
         await tx.wait();
         alert('Vote successfully cast!');
         setUserHasVoted(true); // Update user voting status after voting
+        window.location.reload();
       } catch (error) {
         console.error(error);
         alert('Error voting: ' + error.message);

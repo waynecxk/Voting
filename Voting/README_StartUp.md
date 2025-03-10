@@ -38,6 +38,7 @@ Listen for RPC request (Remote Procedure Call)
 
 Expected output:  Started HTTP and WebSocket JSON-RPC server
 
+### PRE-REQUISITE: a metamask account is REQUIRED beyond this step! 
 
 
 ### `npx hardhat run ./scripts/deploy.js --network localhost`
@@ -50,7 +51,9 @@ Usually in deploy.js, the logic are as such:
 
 Expected output: Deploying contracts with the account: 0x13da105...
 
+### manual edit line 131 in App.js to replace contractAddress using target address in console
 
+Then execute `npm start`
 
 Expected output: Starting the development server...
 

@@ -12,6 +12,7 @@ module.exports = {
     hardhat: {
       accounts: {
         //metamask key here
+        mnemonic: process.env.SEED_PHRASE,
              },
       chainId: 1337,
     },
