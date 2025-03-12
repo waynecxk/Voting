@@ -4,12 +4,7 @@ async function main() {
     console.log("Interacting with the contract using account:", deployer.address);
 
     const Voting = await ethers.getContractFactory("Voting" );
-   const voting = await Voting.attach("0xD8Fa7E995fA8B4118717ad1e13ba190AE3C2579E"); // Replace with actual contract address
-
-
-        // Deploy with constructor arguments
-        const partyNames = ["Party A", "Party B", "Party C"];
-        // voting = await voting.deploy(partyNames);
+   const voting = await Voting.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3"); // Replace with actual contract address
 
     // Get the list of party names
     const parties = await voting.getPartiesCount();

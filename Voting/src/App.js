@@ -157,6 +157,7 @@ function App () {
           
           // Verify contract exists at the address
           const code = await provider.getCode(contractAddress);
+          
           if (code === '0x') {
             throw new Error(`No contract found at address ${contractAddress}. Are you connected to the right network?`);
           }
