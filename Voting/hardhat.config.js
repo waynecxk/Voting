@@ -5,14 +5,12 @@ require("@nomicfoundation/hardhat-toolbox");
 // testing the frontend.
 require("./tasks/faucet");
 
-/** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
   solidity: "0.8.17",
   networks: {
     hardhat: {
       accounts: {
-        //metamask key here
-        mnemonic: process.env.SEED_PHRASE,
+        // mnemonic: process.env.SEED_PHRASE,
              },
       chainId: 1337,
     },

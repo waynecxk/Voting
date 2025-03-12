@@ -13,7 +13,7 @@ async function main() {
 
     await voting.waitForDeployment();
 
-    console.log("MyContract deployed to:", voting); // <--- This line is crucial!
+    console.log("MyContract deployed to:", voting); // <--- This line is crucial! It logs the contract address
 
 }
 

@@ -128,16 +128,33 @@ const contractABI = [
   }
 ];
 
-const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'; // Replace with your contract's deployed address
+const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
 
-function App () {
+// Color scheme for parties
+const partyColors = [
+  '#FF6B6B', // Coral Red
+  '#4ECDC4', // Turquoise
+  '#45B7D1', // Sky Blue
+  '#96CEB4', // Sage Green
+  '#FFEEAD', // Cream Yellow
+  '#D4A5A5', // Dusty Rose
+  '#9B59B6', // Purple
+  '#3498DB', // Blue
+  '#E67E22', // Orange
+  '#2ECC71'  // Green
+];
+
+function App() {
   const ethers = require("ethers")
   const [provider, setProvider] = useState(null);
   const [signer, setSigner] = useState(null);
   const [contract, setContract] = useState(null);
   const [parties, setParties] = useState([]);
   const [userHasVoted, setUserHasVoted] = useState(false);
-  const [partyId, setPartyId] = useState(0);
+  const [selectedParty, setSelectedParty] = useState(null);
+  const [totalVotes, setTotalVotes] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [partyToVote, setPartyToVote] = useState(null);
 
   useEffect(() => {
     const loadBlockchainData = async () => {
@@ -171,7 +188,7 @@ function App () {
           
           // Initialize contract with signer
           const ethContract = new ethers.Contract(contractAddress, contractABI, signer);
-          console.log("Contract initialized:", ethContract); // Debug log
+          console.log("Contract initialized:", ethContract);
           
           // Verify contract is accessible
           try {
@@ -224,72 +241,145 @@ function App () {
         return;
       }
 
-      console.log("Contract:", contract); // Debug log
+      console.log("Contract:", contract);
       const partyCount = await contract.getPartiesCount();
-      console.log("Party count:", partyCount); // Debug log
+      console.log("Party count:", partyCount);
       
       const partyData = [];
+      let total = 0;
       for (let i = 0; i < partyCount; i++) {
         const party = await contract.getParty(i);
         partyData.push({
+          id: i,
           name: party.name,
           voteCount: party.voteCount
         });
+        total += Number(party.voteCount);
       }
       
       setParties(partyData);
+      setTotalVotes(total);
     } catch (error) {
       console.error("Error fetching parties:", error);
       alert("Error fetching parties: " + error.message);
     }
   };
 
-  const handleVote = async () => {
-    if (contract && partyId >= 0) {
+  const handleVoteClick = (partyId) => {
+    setPartyToVote(partyId);
+    setShowModal(true);
+  };
+
+  const handleConfirmVote = async () => {
+    if (contract && partyToVote >= 0) {
       try {
-        const tx = await contract.vote(partyId);
+        const tx = await contract.vote(partyToVote);
         await tx.wait();
         alert('Vote successfully cast!');
-        setUserHasVoted(true); // Update user voting status after voting
-        window.location.reload();
+        setUserHasVoted(true);
+        fetchParties(); // Refresh the party data
       } catch (error) {
         console.error(error);
         alert('Error voting: ' + error.message);
       }
     }
+    setShowModal(false);
+    setPartyToVote(null);
+  };
+
+  const handleCancelVote = () => {
+    setShowModal(false);
+    setPartyToVote(null);
+  };
+
+  const getPartyColor = (partyId) => {
+    return partyColors[partyId % partyColors.length];
   };
 
   return (
     <div className="App">
-      <h1>Voting DApp</h1>
-      <div>
-        {userHasVoted ? (
-          <p>You have already voted!</p>
-        ) : (
-          <>
-            <h3>Choose a Party</h3>
-            <select onChange={(e) => setPartyId(e.target.value)}>
-              {parties.map((party, index) => (
-                <option key={index} value={index}>
-                  {party.name} - {party.voteCount} votes
-                </option>
-              ))}
-            </select>
-            <button onClick={handleVote}>Vote</button>
-          </>
-        )}
-      </div>
-
-      <div>
-        <h3>Parties</h3>
-        <ul>
-          {parties.map((party, index) => (
-            <li key={index}>
-              {party.name}: {party.voteCount} votes
-            </li>
+      <header className="App-header">
+        <h1>Voting DApp</h1>
+        <div className="vote-counter">
+          <p>Total Votes Cast: {totalVotes}</p>
+        </div>
+        <div className="bar-chart">
+          {parties.map((party) => (
+            <div key={party.id} className="bar-container">
+              <div className="bar-label">
+                <span className="color-dot" style={{ backgroundColor: getPartyColor(party.id) }}></span>
+                {party.name}
+              </div>
+              <div className="bar-wrapper">
+                <div 
+                  className="bar-fill" 
+                  style={{ 
+                    width: totalVotes > 0 ? `${(Number(party.voteCount) / Number(totalVotes)) * 100}%` : '0%',
+                    backgroundColor: getPartyColor(party.id)
+                  }}
+                >
+                  <span className="bar-value">{party.voteCount}</span>
+                </div>
+              </div>
+            </div>
           ))}
-        </ul>
-      </div>
+        </div>
+      </header>
+      <main>
+        {!userHasVoted ? (
+          <div className="voting-section">
+            <h2>Select a Party to Vote For:</h2>
+            <div className="party-buttons">
+              {parties.map((party) => (
+                <button
+                  key={party.id}
+                  className={`party-button ${selectedParty === party.id ? 'selected' : ''}`}
+                  onClick={() => handleVoteClick(party.id)}
+                  style={{
+                    borderColor: getPartyColor(party.id),
+                    color: selectedParty === party.id ? 'white' : getPartyColor(party.id),
+                    backgroundColor: selectedParty === party.id ? getPartyColor(party.id) : 'transparent'
+                  }}
+                >
+                  <span className="party-name">{party.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="results-section">
+            <h2>You have already voted!</h2>
+            <h3>Current Results:</h3>
+            <div className="results-grid">
+              {parties.map((party) => (
+                <div key={party.id} className="result-card" style={{
+                  borderColor: getPartyColor(party.id)
+                }}>
+                  <h4 style={{ color: getPartyColor(party.id) }}>{party.name}</h4>
+                  <p>{party.voteCount} votes</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </main>
+
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Confirm Your Vote</h3>
+            <p>Are you sure you want to vote for {parties.find(p => p.id === partyToVote)?.name}?</p>
+            <div className="modal-buttons">
+              <button className="modal-button confirm-button" onClick={handleConfirmVote}>
+                Confirm Vote
+              </button>
+              <button className="modal-button cancel-button" onClick={handleCancelVote}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
