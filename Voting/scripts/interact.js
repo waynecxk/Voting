@@ -1,4 +1,4 @@
-// scripts/interact.js
+// this interact.js file is used to interact with the contract below functions are some ways to interact with the contract
 async function main() {
     const [deployer] = await ethers.getSigners();
     console.log("Interacting with the contract using account:", deployer.address);
@@ -11,30 +11,23 @@ async function main() {
     console.log("Parties:", parties);
 
     // Vote for a party
-    const voteTx = await voting.vote(0);    // Replace with the party index you want to vote for
-    await voteTx.wait();    // Wait for the transaction to be mined         
+    const voteTx = await voting.vote(0);    
+    await voteTx.wait();        
     console.log("Voted for party 0");
-    
 
-    // Get the updated list of party names
-    const updatedParties = await voting.getParty(0);    // Replace with the party index you voted for
+    const updatedParties = await voting.getParty(0);  
     console.log("Updated Parties:", updatedParties);            
 
-
-
     // Check if the user has voted
-    const hasVoted = await voting.hasVoted(deployer.address);   // Replace with the address you want to check   
+    const hasVoted = await voting.hasVoted(deployer.address); 
     console.log("User has voted:", hasVoted);   
 
-       // Vote for a party
-       const voteTx1 = await voting.vote(0);    // Replace with the party index you want to vote for
-       await voteTx1.wait();    // Wait for the transaction to be mined         
-       console.log("Voted for party 0");
+    const voteTx1 = await voting.vote(0);   
+    await voteTx1.wait();        
+    console.log("Voted for party 0");
        
-   
-       // Get the updated list of party names
-       const updatedParties1 = await voting.getParty(0);    // Replace with the party index you voted for
-       console.log("Updated Parties:", updatedParties);    
+    const updatedParties1 = await voting.getParty(0);    
+    console.log("Updated Parties:", updatedParties);    
 }
 
 main()

@@ -2,13 +2,13 @@ async function main() {
     const [deployer] = await ethers.getSigners();
     console.log("Deploying contracts with the account:", deployer.address);
 
-    // Get the contract factory for the Voting contract
+    // Retrieves the contract factory for the Voting contract
     const Voting = await ethers.getContractFactory("Voting");
 
     // List of party names to pass as a constructor argument
-    const partyNames = ["Party A", "Party B", "Party C"];
+    const partyNames = ["Party A", "Party B", "Party C", "Party D", "Party E", "Party F"];
 
-    // Deploy the Voting contract, passing partyNames as the constructor argument
+    // Deploy the Voting contract with party names
     const voting = await Voting.deploy(partyNames);
 
     await voting.waitForDeployment();
