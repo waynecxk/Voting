@@ -131,7 +131,7 @@ function App() {
 
   // Add MetaMask event listeners
   useEffect(() => {
-    if (window.ethereum) {
+    if (window.ethereum && ! signer && !provider && !contract) {
       // Handle account changes
       const handleAccountsChanged = async (accounts) => {
         if (accounts.length === 0) {
@@ -257,9 +257,9 @@ function App() {
     return <div className="loading">Loading...</div>;
   }
 
-  if (error) {
-    return <div className="error">{error}</div>;
-  }
+  // if (error) {
+  //   return <div className="error">{error}</div>;
+  // }
 
   // Main application render
   return (
@@ -325,7 +325,7 @@ function App() {
         ) : (
           <div className="results-section">
             <h2>You have already voted!</h2>
-            <h3>Current Results:</h3>
+            {/* <h3>Current Results:</h3>
             <div className="results-grid">
               {parties.map((party) => (
                 <div key={party.id} className="result-card" style={{
@@ -335,7 +335,7 @@ function App() {
                   <p>{party.voteCount} votes</p>
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
         )}
       </main>
