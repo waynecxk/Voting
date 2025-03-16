@@ -1,0 +1,27 @@
+await voteTx.wait(); 
+const voteTx = await voting.vote(0);
+console.log("Parties:", parties);
+parties = await voting.getPartiesCount();
+const parties = await voting.getPartiesCount();
+ voting = await Voting.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3")
+t voting = await Voting.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3")
+  const voting = await Voting.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3")
+const parties = await voting.getPartiesCount();
+ const voting = await Voting.attach("0xD8Fa7E995fA8B4118717ad1e13ba190AE3C2579E")
+ const Voting = await ethers.getContractFactory("Voting" );
+console.log("Interacting with the contract using account:", deployer.address);
+  const [deployer] = await ethers.getSigners();
+  console.log("Parties:", parties);
+eth.blockNumber
+geth
+geth attach
+   const provider = new ethers.BrowserProvider(window.ethereum);
+    const code = await provider.getCode(contractAddress);
+.exit
+.help
+    const value = await contract.someFunction    console.log(value);
+    //Now you can interact with the contract.
+dress);
+    const Contract = await ethers.getContractFactory("YourContr    const contract = await Contract.attach(contractAd
+const contractAddress = "YOUR_CONTRACT_ADDRESS"; // Replace with your contract address
+npx hardhat run ./scripts/deploy.js --network localhost
