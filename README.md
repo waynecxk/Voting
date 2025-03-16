@@ -9,14 +9,19 @@ RedHat
 Ethers
 
 ## Folder explain
-Artifact --> Generated after compilation of contract /n
+Artifact --> Generated after compilation of contract
+
 Cache --> Storage of data to speed up execution
+
 Contract --> Core of solidity framework, smart contracts goes here
+
 Node_module --> Library and dependencies
-Public --> 
+
+
 Scripts --> Deployment scripts or interaction scripts
+
 Src --> FrontEnd scripts
-Tasks --> 
+
 Test --> Test script
 
 ## Available Scripts
