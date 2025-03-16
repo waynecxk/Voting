@@ -35,6 +35,41 @@
       "artifacts": [
         "Voting"
       ]
+    },
+    "C:\\Users\\Wayne\\Desktop\\VotingLast\\contracts\\Voting.sol": {
+      "lastModificationDate": 1742089999708,
+      "contentHash": "ca1a1dbb3fc67b037047a847d4da1cc2",
+      "sourceName": "contracts/Voting.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.17"
+      ],
+      "artifacts": [
+        "Voting"
+      ]
     }
   }
 }
