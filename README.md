@@ -9,7 +9,7 @@ RedHat
 Ethers
 
 ## Folder explain
-Artifact --> Generated after compilation of contract
+Artifact --> Generated after compilation of contract /n
 Cache --> Storage of data to speed up execution
 Contract --> Core of solidity framework, smart contracts goes here
 Node_module --> Library and dependencies
