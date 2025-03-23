@@ -4,10 +4,6 @@ Contributors:
 **Sebestian Siew,
 Wayne Chua **
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-RedHat
-Ethers
-
 ## Folder explain
 Artifact --> Generated after compilation of contract
 
